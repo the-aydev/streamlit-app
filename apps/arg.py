@@ -1,57 +1,23 @@
-import random
 from tensorflow.keras import layers
+import random
 from tensorflow import keras
-from PIL import ImageOps, Image
+from PIL import ImageOps
 import PIL
 from tensorflow.keras.preprocessing.image import load_img
 from IPython.display import Image, display
-from google.colab import drive
 from matplotlib import pyplot as plt
 import numpy as np
 from PIL import Image
 from pycocotools.coco import COCO
 import json
+from google.colab import drive
 import os
-import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import json
-import geopandas as gpd
-import pyproj
-import plotly.graph_objs as go
 
 img_size = (160, 160)
 num_classes = 3
 batch_size = 8
 
 DATA_DIR = './drive/MyDrive/ocenic (1)/'
-
-# Load data from external source
-
-
-@st.cache
-def load_data():
-    df = pd.read_file(
-        "github.com/bumie-e/Saving-Our-Oceans-with-AI"
-    )
-    return df
-
-
-df = load_data()
-
-# Create a title for your app
-st.title("Saving our oceans with AI")
-st.markdown(
-    "This application will allow you to locate an ocean on the map, takes a screenshot of the map and sends it to the AI which shows the areas containing plastic.")
-st.sidebar.title("Visualization Selector")
-st.sidebar.markdown("Select the Charts/Plots accordingly: ")
-
-# A description
-st.write("Here is the dataset used in this analysis:")
-
-# Display the dataframe
-st.write(df)
 
 input_img_paths = os.path.join(DATA_DIR, 'train')
 target_img_paths = os.path.join(DATA_DIR, 'trainannon/mask')
@@ -64,7 +30,7 @@ y_test_dir = os.path.join(DATA_DIR, 'testannon/mask')
 
 drive.mount('/content/drive')
 
-%matplotlib inline
+# %matplotlib inline
 
 img_dir = '/content/drive/MyDrive/ocenic (1)/train'
 coco = COCO('/content/drive/MyDrive/ocenic (1)/trainannon/anon.json')
@@ -244,7 +210,6 @@ train_gen = PlasticDebris(
 val_gen = PlasticDebris(batch_size, img_size,
                         val_input_img_paths, val_target_img_paths)
 
-
 # Configure the model for training.
 # We use the "sparse" version of categorical_crossentropy
 # because our target data is integers.
@@ -259,7 +224,6 @@ callbacks = [
 epochs = 15
 model.fit(train_gen, epochs=epochs,
           validation_data=val_gen, callbacks=callbacks)
-
 
 # Generate predictions for all images in the validation set
 
@@ -289,12 +253,3 @@ display(img)
 
 # Display mask predicted by our model
 display_mask(i)  # Note that the model only sees inputs at 150x150.
-
-
-# Toggles for the feature selection in sidebar
-show_heatmap = st.sidebar.checkbox("Show Heatmap")
-show_images = st.sidebar.checkbox("Show Images")
-images_count = st.sidebar.number_input("Images to Show", value=10)
-show_code = st.sidebar.checkbox("Show Code")
-
-mapboxt = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic2xsZWVrayIsImEiOiJja3ViaXdnazYwYW5rMnhtdGlsOXB5eW5kIn0.50-9Ufoo5wVsBGxfPah92Q'
