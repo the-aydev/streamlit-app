@@ -22,7 +22,7 @@ def app():
             """
         )
 
-    st.subheader("Satellite Imagery")
+    st.subheader("Drone Imagery")
     st.markdown(
         """
         The following images were taken using drones.
@@ -40,7 +40,8 @@ def app():
 
     # Import libraries
     import ee
-    import geemap.foliumap as geemap
+    # import geemap.foliumap as geemap
+    import geemap.eefolium as geemap
 
     # Create an interactive map
     Map = geemap.Map(plugin_Draw=True, Draw_export=False)

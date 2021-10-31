@@ -1,5 +1,6 @@
 import streamlit as st
-import geemap.foliumap as geemap
+# import geemap.foliumap as geemap
+import geemap.eefolium as geemap
 
 
 def app():

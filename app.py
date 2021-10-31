@@ -2,8 +2,6 @@ import streamlit as st
 from multiapp import MultiApp
 from apps import home, basemaps, source_code, datasets, main
 
-# st.set_page_config(layout="wide")
-
 
 apps = MultiApp()
 
