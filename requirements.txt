@@ -1,6 +1,7 @@
-google-colab @ file:///home/conda/feedstock_root/build_artifacts/google-colab_1613339584002/workipython==7.28.0
+google-colab
 Pillow==8.3.2
 pycocotools
 streamlit==0.89.0
 tensorflow
 git+git://github.com/giswqs/geemap
+git+git://github.com/giswqs/leafmap
