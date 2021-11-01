@@ -7,3 +7,7 @@ No proper monitoring and detection system of plastic debris in the oceans
 
 Solution
 A web app that leverages on GIS systems to locate, detect and quantify plastic debris in the oceans.
+
+- **Web App:** <https://share.streamlit.io/the-aydev/streamlit-app/app.py>
+- **Github:** <https://github.com/bumie-e/Saving-Our-Oceans-with-AI>
+- **Github:** <https://github.com/the-aydev/streamlit-app>
