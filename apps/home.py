@@ -1,5 +1,4 @@
 import streamlit as st
-import leafmap.foliumap as leafmap
 
 
 def app():
@@ -7,19 +6,11 @@ def app():
 
     st.markdown(
         """
-        Make sure you set `EARTHENGINE_TOKEN='your-token'` as an environment variable (secret) on the cloud platform.
         - **Web App:** <https://share.streamlit.io/the-aydev/streamlit-app/app.py>
         - **Github:** <https://github.com/bumie-e/Saving-Our-Oceans-with-AI>
         - **Github:** <https://github.com/the-aydev/streamlit-app>
         """
     )
-
-    with st.expander("Where to find your Earth Engine token?"):
-        st.markdown(
-            """
-            - **Windows:** `C:/Users/USERNAME/.config/earthengine/credentials`
-            """
-        )
 
     st.subheader("Drone Imagery")
     st.markdown(
@@ -83,8 +74,7 @@ def app():
 
     # Import libraries
     import ee
-    # import geemap.foliumap as geemap
-    import geemap.eefolium as geemap
+    import geemap.foliumap as geemap
 
     # Create an interactive map
     Map = geemap.Map(plugin_Draw=True, Draw_export=False)
